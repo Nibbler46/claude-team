@@ -1,0 +1,14 @@
+{
+  "name": "tym-marketplace",
+  "owner": {
+    "name": "tym"
+  },
+  "description": "Agentní tým pro Claude Code – návrh, kritika Gemini, arbitráž, testy napřed, review a safety.",
+  "plugins": [
+    {
+      "name": "tym",
+      "source": "./plugins/tym",
+      "description": "Univerzální agentní tým s kritikou Gemini a arbitrem Opus/Fable"
+    }
+  ]
+}

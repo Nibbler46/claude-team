@@ -1,0 +1,47 @@
+{
+  "name": "tym",
+  "displayName": "Agentní tým",
+  "version": "1.0.0",
+  "description": "Univerzální agentní tým: triáž, návrh (Opus), kritika (Gemini přes agy), arbitráž (Opus/Fable), testy napřed, implementace (Sonnet), review a safety. Spouští se /tym:start <úkol>.",
+  "author": { "name": "tym" },
+  "license": "MIT",
+  "keywords": ["agenti", "review", "gemini", "multi-agent"],
+  "userConfig": {
+    "gemini_model": {
+      "type": "string",
+      "title": "Model Gemini",
+      "description": "Slug modelu pro kritiku (vypíše ho příkaz agy models). Prázdné = výchozí model agy.",
+      "default": ""
+    },
+    "gemini_effort": {
+      "type": "string",
+      "title": "Úsilí Gemini",
+      "description": "low, medium nebo high",
+      "default": "high"
+    },
+    "ntfy_topic": {
+      "type": "string",
+      "title": "ntfy téma (notifikace)",
+      "description": "Volitelné. Dlouhý náhodný název tématu v aplikaci ntfy – je veřejné.",
+      "default": ""
+    },
+    "ntfy_server": {
+      "type": "string",
+      "title": "ntfy server",
+      "description": "Volitelné. Výchozí https://ntfy.sh",
+      "default": "https://ntfy.sh"
+    },
+    "telegram_bot_token": {
+      "type": "string",
+      "title": "Telegram bot token (notifikace)",
+      "description": "Volitelné. Token od @BotFather. Ukládá se do settings.json.",
+      "default": ""
+    },
+    "telegram_chat_id": {
+      "type": "string",
+      "title": "Telegram chat ID",
+      "description": "Volitelné. Vaše chat ID pro notifikace.",
+      "default": ""
+    }
+  }
+}
