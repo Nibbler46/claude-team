@@ -14,12 +14,11 @@ Pak restartujte Claude Code nebo zadejte `/reload-plugins`.
 Nejjednodušší je soubor `~/.config/claude-team/config` (pro všechny projekty) nebo `.team/config` v projektu (má přednost):
 ```
 gemini_model=gemini-4-argon-medium
-gemini_effort=high
 ntfy_topic=
 telegram_bot_token=
 telegram_chat_id=
 ```
-Model vyberete z výpisu `agy models`. Bez nastavení použije `agy` svůj výchozí model. Pokud vaše verze Claude Code umí nastavení pluginu (`/plugin configure team@claude-team`), má přednost před souborem.
+Model vyberete z výpisu `agy models`; úroveň uvažování je součástí názvu (`…-medium`, `…-high`), proto se zvlášť nenastavuje. Bez nastavení použije `agy` svůj výchozí model. Pokud vaše verze Claude Code umí nastavení pluginu (`/plugin configure team@claude-team`), má přednost před souborem.
 
 Aktualizace: `/plugin marketplace update claude-team`.
 
