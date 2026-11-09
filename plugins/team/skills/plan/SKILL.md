@@ -1,5 +1,5 @@
 ---
-name: navrh
+name: plan
 description: Jen návrh řešení agentním týmem – architekt (Opus) navrhne, Gemini a safety kritizují, arbitr (Opus/Fable) rozhodne, max. 2 kola. Nic se neprogramuje. Použij, když uživatel chce návrh, plán nebo posouzení řešení bez implementace.
 ---
 
@@ -17,7 +17,7 @@ Jsi **dirigent**. Sám nenavrhuješ ani nehodnotíš – spouštíš agenty a ko
 1. Přejdi do kořene git repozitáře (`git rev-parse --show-toplevel`).
 2. Spusť `bash "${CLAUDE_PLUGIN_ROOT}/scripts/team-init.sh"`. Pokud vypíše `POTREBA_INICIALIZACE`, spusť agenta **team:inicializace**, ukaž jeho souhrn a zeptej se `Pokračovat` / `Upravím sám` / `Zastavit`. Výstup inicializace necommituj – nech ho uživateli.
 3. Vymysli slug (malá písmena, bez diakritiky, pomlčky, max. 40 znaků), vytvoř `RUN=.team/runs/<RRRR-MM-DD-HHMM>-<slug>` a do `RUN/zadani.md` zapiš úkol doslova.
-4. Do `RUN/stav.md` zapiš na samostatné řádky: `BASE: <git rev-parse HEAD>`, `REZIM: navrh`, `ZACATEK: <datum a čas>`.
+4. Do `RUN/stav.md` zapiš na samostatné řádky: `BASE: <git rev-parse HEAD>`, `REZIM: plan`, `ZACATEK: <datum a čas>`.
 
 ## 2. Výběr
 Zeptej se nástrojem **AskUserQuestion** (jinak textem):

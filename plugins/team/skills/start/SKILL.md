@@ -25,7 +25,7 @@ Tým nepředpokládá žádnou technologii – vše o projektu se bere z jeho `C
    2. **⏸ Zastávka:** ukaž jeho souhrn (technologie, kontroly, co se stalo s `CLAUDE.md`, otázky) a zeptej se: `Pokračovat`, `Upravím CLAUDE.md / kontroly sám` (pak skonči a počkej), `Zastavit`.
    3. Při `Pokračovat` commitni výstup inicializace na aktuální větev: `git add CLAUDE.md .team/kontroly.sh .team/pouceni.md .gitignore && git commit -m "team: inicializace projektu"`.
    Inicializace proběhne jen jednou za projekt. Uživatel ji může zopakovat smazáním `.team/kontroly.sh`.
-4. **Navázání na `/team:navrh`:** pokud je úkol cesta k existující složce `.team/runs/…` s `plan.md`, použij ji jako `RUN` a slug převezmi z jejího názvu. Pak přeskoč triáž, v kroku 2 se ptej jen na otázky 2 a 3, proveď krok 3, přeskoč kroky 4–5 a pokračuj zastávkou 6.
+4. **Navázání na `/team:plan`:** pokud je úkol cesta k existující složce `.team/runs/…` s `plan.md`, použij ji jako `RUN` a slug převezmi z jejího názvu. Pak přeskoč triáž, v kroku 2 se ptej jen na otázky 2 a 3, proveď krok 3, přeskoč kroky 4–5 a pokračuj zastávkou 6.
 5. Jinak vymysli krátký slug úkolu (malá písmena, bez diakritiky, pomlčky, max. 40 znaků), vytvoř `RUN=.team/runs/<RRRR-MM-DD-HHMM>-<slug>` a do `RUN/zadani.md` zapiš úkol doslova.
 
 ## 1. Triáž
