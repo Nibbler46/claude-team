@@ -21,7 +21,7 @@ Smíš měnit jen soubory odpovídající `RUN/scope.txt`. Úpravy mimo něj hl�
 3. Pokud kontroly selžou, oprav a spusť znovu (nejvýš 3 pokusy). Potom vrať výsledek, i neúspěšný.
 
 ## Režim „opravy“
-Oprav jen výtky se stavem **PÁDNÁ** z `RUN/vytky.md`. Po opravě spusť `bash "${CLAUDE_PLUGIN_ROOT}/scripts/team-kontroly.sh" "<RUN>" opravy-N`. Vrať seznam: `K3 → co jsem změnil (soubor)`.
+Oprav jen výtky se stavem **PÁDNÁ** z `RUN/vytky.md`. Pokud `RUN/plan.md` neexistuje (review hotových změn), řiď se jen výtkami a pravidly projektu. Po opravě spusť `bash "${CLAUDE_PLUGIN_ROOT}/scripts/team-kontroly.sh" "<RUN>" opravy-N`. Vrať seznam: `K3 → co jsem změnil (soubor)`.
 
 ## Zásady
 - Nejjednodušší kód, který splní kritéria. Žádné „vylepšení navíc“ mimo plán.

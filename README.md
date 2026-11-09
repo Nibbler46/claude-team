@@ -18,11 +18,19 @@ U soukromého repozitáře musí mít počítač přístup ke GitHubu přes git 
 **Předpoklady:** `git`, `python3`, `curl`; pro kritiku Gemini nainstalované a jednou interaktivně přihlášené `agy`.
 
 ## Použití
-V kořeni projektu:
-```
-/team:start tvorba konceptů nabídek z e-mailů přes MCP server
-```
-Jednotlivé agenty lze volat i samostatně, např. `@agent-team:architekt`.
+Vše se ovládá čtyřmi příkazy v kořeni projektu:
+
+| Příkaz | Co udělá |
+|---|---|
+| `/team:start <úkol>` | celý proces od návrhu po review (průběh níže) |
+| `/team:navrh <úkol>` | jen návrh + kritika + arbitráž, nic se neprogramuje |
+| `/team:start <složka návrhu>` | naváže implementací na hotový `/team:navrh` |
+| `/team:review [větev/commit]` | review aktuálních změn: kontroly, Gemini, safety, arbitr; volitelně opraví |
+| `/team:safety [větev/commit]` | jen bezpečnostní kontrola aktuálních změn; volitelně opraví |
+
+Příklad: `/team:start tvorba konceptů nabídek z e-mailů přes MCP server`
+
+Agenty nevoláte přímo – příkazy je spouštějí samy. Stačí i napsat normálně, třeba „nech tým zkontrolovat moje změny“, a Claude vybere správný příkaz.
 
 ## Průběh
 ```
