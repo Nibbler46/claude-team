@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Kritika plánu nebo diffu pomocí Gemini přes Antigravity CLI (agy).
-# Použití: tym-gemini.sh <plan|diff> <RUN> <kolo>
+# Použití: team-gemini.sh <plan|diff> <RUN> <kolo>
 # Výstup:  <RUN>/kritika-<režim>-<kolo>.md
 # Návratové kódy: 0 OK, 2 špatné použití / chybí nástroj, 3 Gemini neodpověděl
 # Kompatibilní s bash 3.2 (macOS).
 
 rezim="${1:-}"; run="${2:-}"; kolo="${3:-}"
 if [[ "$rezim" != "plan" && "$rezim" != "diff" ]] || [[ -z "$run" || -z "$kolo" ]]; then
-  echo "CHYBA: použití: tym-gemini.sh <plan|diff> <RUN> <kolo>" >&2
+  echo "CHYBA: použití: team-gemini.sh <plan|diff> <RUN> <kolo>" >&2
   exit 2
 fi
 
@@ -17,9 +17,9 @@ cd "$root" || exit 2
 command -v agy >/dev/null 2>&1 || { echo "CHYBA: příkaz agy nenalezen – nainstalujte Antigravity CLI a přihlaste se (agy)" >&2; exit 2; }
 command -v python3 >/dev/null 2>&1 || { echo "CHYBA: chybí python3" >&2; exit 2; }
 
-# Nastavení z pluginu (TYM_GEMINI_MODEL, TYM_GEMINI_EFFORT) – prázdné = výchozí hodnoty agy
-model_arg=(); [[ -n "${TYM_GEMINI_MODEL:-}" ]] && model_arg=(--model "$TYM_GEMINI_MODEL")
-effort_arg=(); [[ -n "${TYM_GEMINI_EFFORT:-}" ]] && effort_arg=(--effort "$TYM_GEMINI_EFFORT")
+# Nastavení z pluginu (TEAM_GEMINI_MODEL, TEAM_GEMINI_EFFORT) – prázdné = výchozí hodnoty agy
+model_arg=(); [[ -n "${TEAM_GEMINI_MODEL:-}" ]] && model_arg=(--model "$TEAM_GEMINI_MODEL")
+effort_arg=(); [[ -n "${TEAM_GEMINI_EFFORT:-}" ]] && effort_arg=(--effort "$TEAM_GEMINI_EFFORT")
 
 vystup="$run/kritika-$rezim-$kolo.md"
 predmet="$run/predmet-$rezim-$kolo.txt"
@@ -33,7 +33,7 @@ if [[ "$rezim" == "plan" ]]; then
 else
   base="$(sed -n 's/^BASE:[[:space:]]*//p' "$run/stav.md" 2>/dev/null | head -n1)"
   [[ -n "$base" ]] || { echo "CHYBA: v $run/stav.md chybí řádek 'BASE: <sha>'" >&2; exit 2; }
-  git diff "$base" -- . ':(exclude).tym' > "$predmet"
+  git diff "$base" -- . ':(exclude).team' > "$predmet"
   [[ -s "$predmet" ]] || { echo "CHYBA: diff proti $base je prázdný" >&2; exit 2; }
   nazev="DIFF"
 fi

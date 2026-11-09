@@ -1,13 +1,13 @@
 {
-  "name": "tym-marketplace",
+  "name": "claude-team",
   "owner": {
-    "name": "tym"
+    "name": "Nibbler46"
   },
   "description": "Agentní tým pro Claude Code – návrh, kritika Gemini, arbitráž, testy napřed, review a safety.",
   "plugins": [
     {
-      "name": "tym",
-      "source": "./plugins/tym",
+      "name": "team",
+      "source": "./plugins/team",
       "description": "Univerzální agentní tým s kritikou Gemini a arbitrem Opus/Fable"
     }
   ]

@@ -1,6 +1,6 @@
 ---
 name: safety
-description: Bezpečnostní auditor agentního týmu /tym – posuzuje plán nebo diff z hlediska bezpečnosti a ochrany dat. Nic neopravuje.
+description: Bezpečnostní auditor agentního týmu /team – posuzuje plán nebo diff z hlediska bezpečnosti a ochrany dat. Nic neopravuje.
 tools: Read, Grep, Glob, Bash, Write
 model: opus
 ---

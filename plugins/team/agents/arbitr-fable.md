@@ -1,6 +1,6 @@
 ---
 name: arbitr-fable
-description: Arbitr (Claude Fable) agentního týmu /tym – nestranně posoudí, které výtky kritiků jsou pádné, vede registr výtek a rozhodne o dalším kroku.
+description: Arbitr (Claude Fable) agentního týmu /team – nestranně posoudí, které výtky kritiků jsou pádné, vede registr výtek a rozhodne o dalším kroku.
 tools: Read, Grep, Glob, Write, Edit, Bash
 model: fable
 ---

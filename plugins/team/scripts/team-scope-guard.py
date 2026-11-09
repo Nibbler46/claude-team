@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Hlídač rozsahu pro /tym (PreToolUse hook pro Read/Edit/Write/MultiEdit/NotebookEdit).
+"""Hlídač rozsahu pro /team (PreToolUse hook pro Read/Edit/Write/MultiEdit/NotebookEdit).
 
-- Bez aktivního běhu (.tym/active) nic nedělá.
-- Během běhu vždy blokuje čtení a zápis .env* a zápis do .tym/kontroly.sh a .tym/pouceni.md.
-- Ve fázi "implementace" povolí jen soubory ze scope.txt (a složku .tym/).
-- V ostatních fázích (návrh, kritika, review) povolí jen zápis do .tym/.
+- Bez aktivního běhu (.team/active) nic nedělá.
+- Během běhu vždy blokuje čtení a zápis .env* a zápis do .team/kontroly.sh a .team/pouceni.md.
+- Ve fázi "implementace" povolí jen soubory ze scope.txt (a složku .team/).
+- V ostatních fázích (návrh, kritika, review) povolí jen zápis do .team/.
 Blokace = exit 2, zpráva na stderr se vrátí agentovi.
 """
 import fnmatch
@@ -18,7 +18,7 @@ MAX_STARI = 12 * 3600  # starší značka běhu se ignoruje (zapomenutý běh)
 
 
 def blokuj(zprava: str) -> None:
-    print(f"tym: {zprava}\n(Pokud žádný běh /tym neprobíhá, smažte soubor .tym/active.)", file=sys.stderr)
+    print(f"team: {zprava}\n(Pokud žádný běh /team neprobíhá, smažte soubor .team/active.)", file=sys.stderr)
     sys.exit(2)
 
 
@@ -49,7 +49,7 @@ def main() -> None:
     koren = koren_repa(cesta)
     if not koren:
         sys.exit(0)
-    aktivni = os.path.join(koren, ".tym", "active")
+    aktivni = os.path.join(koren, ".team", "active")
     if not os.path.isfile(aktivni):
         sys.exit(0)
 
@@ -61,7 +61,7 @@ def main() -> None:
                 stav[k] = v
     try:
         if time.time() - float(stav.get("CAS", "0")) > MAX_STARI:
-            print("tym: značka běhu je starší než 12 h, hlídač ji ignoruje.", file=sys.stderr)
+            print("team: značka běhu je starší než 12 h, hlídač ji ignoruje.", file=sys.stderr)
             sys.exit(0)
     except ValueError:
         pass
@@ -77,9 +77,9 @@ def main() -> None:
         blokuj(f"práce se souborem {rel} je během běhu týmu zakázána.")
     if data.get("tool_name") == "Read":
         sys.exit(0)  # čtení ostatních souborů je vždy povolené
-    if rel in (".tym/kontroly.sh", ".tym/pouceni.md"):
+    if rel in (".team/kontroly.sh", ".team/pouceni.md"):
         blokuj(f"{rel} může upravit jen uživatel, ne agent během běhu.")
-    if rel.startswith(".tym/"):
+    if rel.startswith(".team/"):
         sys.exit(0)
 
     if faze != "implementace":

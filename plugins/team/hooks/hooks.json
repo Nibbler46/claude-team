@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/tym-scope-guard.py\""
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/team-scope-guard.py\""
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/tym-notify.sh\""
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/team-notify.sh\""
           }
         ]
       }

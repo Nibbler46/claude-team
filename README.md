@@ -4,37 +4,29 @@ Univerzální tým agentů pro libovolný projekt. Technologie zjistí sám z `C
 
 ## Instalace (v Claude Code, žádné skripty)
 
-**Varianta A – ze složky**
-1. Rozbalte `tym-plugin.zip` do trvalého umístění, např. `~/claude-pluginy/` (plugin se načítá přímo odtud, složku nemažte).
-2. V Claude Code:
-   ```
-   /plugin marketplace add ~/claude-pluginy/tym-marketplace
-   /plugin install tym@tym-marketplace
-   /plugin configure tym@tym-marketplace
-   ```
-   V nastavení vyplňte model Gemini (slug z příkazu `agy models`) a volitelně notifikace.
-3. Restartujte Claude Code (nebo `/reload-plugins`).
+```
+/plugin marketplace add Nibbler46/claude-team
+/plugin install team@claude-team
+/plugin configure team@claude-team
+```
+V nastavení vyplňte model Gemini (slug z příkazu `agy models`) a volitelně notifikace. Pak restartujte Claude Code nebo zadejte `/reload-plugins`.
 
-**Varianta B – z GitHubu (doporučeno pro více počítačů)**
-Nahrajte obsah složky `tym-marketplace` do repozitáře (může být soukromý) a na libovolném počítači:
-```
-/plugin marketplace add <váš-účet>/<repozitář>
-/plugin install tym@tym-marketplace
-```
-Aktualizace pak dostanete přes `/plugin marketplace update tym-marketplace`.
+Aktualizace: `/plugin marketplace update claude-team`.
+
+U soukromého repozitáře musí mít počítač přístup ke GitHubu přes git (jednou `gh auth login` a `gh auth setup-git`).
 
 **Předpoklady:** `git`, `python3`, `curl`; pro kritiku Gemini nainstalované a jednou interaktivně přihlášené `agy`.
 
 ## Použití
 V kořeni projektu:
 ```
-/tym:start tvorba konceptů nabídek z e-mailů přes MCP server
+/team:start tvorba konceptů nabídek z e-mailů přes MCP server
 ```
-Jednotlivé agenty lze volat i samostatně, např. `@agent-tym:architekt`.
+Jednotlivé agenty lze volat i samostatně, např. `@agent-team:architekt`.
 
 ## Průběh
 ```
-0. Příprava        čistý git, .tym/
+0. Příprava        čistý git, .team/
    Inicializace    jen poprvé: technologie z CLAUDE.md / projektu → kontroly
                    ⏸ potvrzení souhrnu
 1. Triáž           Sonnet odhadne riziko a předvyplní tým
@@ -49,35 +41,35 @@ Jednotlivé agenty lze volat i samostatně, např. `@agent-tym:architekt`.
 9. Arbitráž        → opravy → kontroly → commit              ┘ max 2 kola
 ⏸  Závěrečná zpráva na jednu obrazovku + uložení poučení
 ```
-Vše běží ve větvi `tym/<úkol>`. Merge a push děláte vždy vy.
+Vše běží ve větvi `team/<úkol>`. Merge a push děláte vždy vy.
 
 ## Agenti
 | Agent | Model | Úloha |
 |---|---|---|
-| `tym:inicializace` | Sonnet | jednou za projekt: technologie, doplnění CLAUDE.md, `.tym/kontroly.sh` |
-| `tym:triage` | Sonnet | odhad rizika, doporučené fáze |
-| `tym:architekt` | Opus | návrh, akceptační kritéria, rozsah souborů |
-| `tym:kritik-gemini` | Haiku → Gemini | kritika plánu i diffu přes `agy` |
-| `tym:arbitr` / `tym:arbitr-fable` | Opus / Fable | nestranný verdikt, registr výtek, poučení |
-| `tym:safety` | Opus | bezpečnost plánu i diffu |
-| `tym:programator` | Sonnet | testy napřed, implementace, opravy |
+| `team:inicializace` | Sonnet | jednou za projekt: technologie, doplnění CLAUDE.md, `.team/kontroly.sh` |
+| `team:triage` | Sonnet | odhad rizika, doporučené fáze |
+| `team:architekt` | Opus | návrh, akceptační kritéria, rozsah souborů |
+| `team:kritik-gemini` | Haiku → Gemini | kritika plánu i diffu přes `agy` |
+| `team:arbitr` / `team:arbitr-fable` | Opus / Fable | nestranný verdikt, registr výtek, poučení |
+| `team:safety` | Opus | bezpečnost plánu i diffu |
+| `team:programator` | Sonnet | testy napřed, implementace, opravy |
 
 ## Pojistky
 - **Výtka bez důkazu neplatí** – kritici musí uvést soubor/řádek nebo scénář, arbitr ho ověří.
 - **Registr výtek** – uzavřené výtky se v dalším kole nevracejí.
-- **Hlídač rozsahu** (hook) – mimo fázi implementace se kód nemění; v implementaci jen soubory ze `scope.txt`; během běhu je zakázán `.env` a agenti nesmí upravit `.tym/kontroly.sh`.
+- **Hlídač rozsahu** (hook) – mimo fázi implementace se kód nemění; v implementaci jen soubory ze `scope.txt`; během běhu je zakázán `.env` a agenti nesmí upravit `.team/kontroly.sh`.
 - **Fakta před názory** – review diffu až po úspěšných kontrolách.
 
 ## Struktura v projektu
 ```
 CLAUDE.md                pravidla projektu (čtou všichni agenti)
-.tym/kontroly.sh         automatické kontroly – upravujete jen vy
-.tym/pouceni.md          schválená poučení z minulých běhů
-.tym/runs/<datum-úkol>/  plán, výtky, verdikty, logy, zpráva (v .gitignore)
+.team/kontroly.sh         automatické kontroly – upravujete jen vy
+.team/pouceni.md          schválená poučení z minulých běhů
+.team/runs/<datum-úkol>/  plán, výtky, verdikty, logy, zpráva (v .gitignore)
 ```
 
 ## Omezení
 - Hlídač kontroluje nástroje Edit/Write/Read, ne zápisy přes shell.
 - `agy -p` má známou chybu s prázdným výstupem v rourách; skript to zkouší dvakrát, pak dirigent nabídne pokračovat bez Gemini.
 - Plán a diff odcházejí i do Gemini.
-- Pokud běh spadne a hlídač blokuje úpravy, smažte `.tym/active` (po 12 h se ignoruje sám).
+- Pokud běh spadne a hlídač blokuje úpravy, smažte `.team/active` (po 12 h se ignoruje sám).

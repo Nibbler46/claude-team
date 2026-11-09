@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Nastaví aktuální fázi běhu /tym pro hlídač rozsahu.
-# Použití: tym-faze.sh <RUN> <navrh|kritika|implementace|review|konec>
+# Nastaví aktuální fázi běhu /team pro hlídač rozsahu.
+# Použití: team-faze.sh <RUN> <navrh|kritika|implementace|review|konec>
 
 run="${1:-}"; faze="${2:-}"
 root="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "CHYBA: nejsem v git repozitáři" >&2; exit 2; }
-znacka="$root/.tym/active"
+znacka="$root/.team/active"
 
 case "$faze" in
   konec)
@@ -13,7 +13,7 @@ case "$faze" in
     ;;
   navrh|kritika|implementace|review)
     [[ -n "$run" && -d "$root/$run" ]] || { echo "CHYBA: složka běhu '$run' neexistuje" >&2; exit 2; }
-    mkdir -p "$root/.tym"
+    mkdir -p "$root/.team"
     printf 'RUN=%s\nFAZE=%s\nCAS=%s\n' "$run" "$faze" "$(date +%s)" > "$znacka"
     echo "Fáze: $faze"
     ;;

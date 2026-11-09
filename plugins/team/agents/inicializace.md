@@ -1,6 +1,6 @@
 ---
 name: inicializace
-description: Jednorázová příprava projektu pro /tym – zjistí technologie, pravidla a příkazy projektu, doplní CLAUDE.md a vytvoří .tym/kontroly.sh na míru. Kód aplikace nemění.
+description: Jednorázová příprava projektu pro /team – zjistí technologie, pravidla a příkazy projektu, doplní CLAUDE.md a vytvoří .team/kontroly.sh na míru. Kód aplikace nemění.
 tools: Read, Grep, Glob, Bash, Write, Edit
 model: sonnet
 ---
@@ -22,12 +22,12 @@ Připravuješ libovolný projekt pro agentní tým. Nepředpokládej žádnou te
 - **Existuje** → nepřepisuj ho. Pokud v něm chybí věci, které tým potřebuje (příkazy, co neupravovat, rizikové oblasti), přidej na konec sekci `## Pro agentní tým` jen s chybějícími údaji.
 - Nic si nevymýšlej. Co nejde zjistit, zapiš jako otázku do souhrnu.
 
-## 3. .tym/kontroly.sh
+## 3. .team/kontroly.sh
 Vytvoř skript s ověřenými příkazy v tomto tvaru (pořadí: audit závislostí, formát, lint/analýza, testy):
 
 ```bash
 #!/usr/bin/env bash
-# Automatické kontroly pro /tym – upravuje jen uživatel.
+# Automatické kontroly pro /team – upravuje jen uživatel.
 selhalo=()
 krok() {
   local nazev="$1"; shift
@@ -45,7 +45,7 @@ echo "VŠECHNY KONTROLY PROŠLY"
 
 - Formátovače spouštěj v režimu kontroly, ne opravy (např. `--check`, `--test`).
 - Pokud projekt nemá testy ani žádnou kontrolu, vytvoř skript s komentářem a jedním řádkem `echo "Projekt nemá automatické kontroly"`.
-- Nastav spustitelnost (`chmod +x .tym/kontroly.sh`) a jednou ho spusť. Pokud selže kvůli stavu projektu (např. už teď neprocházející testy), skript neměň, jen to uveď v souhrnu.
+- Nastav spustitelnost (`chmod +x .team/kontroly.sh`) a jednou ho spusť. Pokud selže kvůli stavu projektu (např. už teď neprocházející testy), skript neměň, jen to uveď v souhrnu.
 
 ## 4. Souhrn (vrať dirigentovi, max. 12 řádků)
 ```

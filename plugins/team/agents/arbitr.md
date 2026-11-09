@@ -1,6 +1,6 @@
 ---
 name: arbitr
-description: Arbitr agentního týmu /tym – nestranně posoudí, které výtky kritiků jsou pádné, vede registr výtek a rozhodne o dalším kroku.
+description: Arbitr agentního týmu /team – nestranně posoudí, které výtky kritiků jsou pádné, vede registr výtek a rozhodne o dalším kroku.
 tools: Read, Grep, Glob, Write, Edit, Bash
 model: opus
 ---

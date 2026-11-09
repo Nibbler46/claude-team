@@ -1,11 +1,18 @@
 {
-  "name": "tym",
+  "name": "team",
   "displayName": "Agentní tým",
   "version": "1.0.0",
-  "description": "Univerzální agentní tým: triáž, návrh (Opus), kritika (Gemini přes agy), arbitráž (Opus/Fable), testy napřed, implementace (Sonnet), review a safety. Spouští se /tym:start <úkol>.",
-  "author": { "name": "tym" },
+  "description": "Univerzální agentní tým: triáž, návrh (Opus), kritika (Gemini přes agy), arbitráž (Opus/Fable), testy napřed, implementace (Sonnet), review a safety. Spouští se /team:start <úkol>.",
+  "author": {
+    "name": "Nibbler46"
+  },
   "license": "MIT",
-  "keywords": ["agenti", "review", "gemini", "multi-agent"],
+  "keywords": [
+    "agenti",
+    "review",
+    "gemini",
+    "multi-agent"
+  ],
   "userConfig": {
     "gemini_model": {
       "type": "string",
