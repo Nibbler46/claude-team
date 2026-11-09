@@ -17,7 +17,10 @@ cd "$root" || exit 2
 command -v agy >/dev/null 2>&1 || { echo "CHYBA: příkaz agy nenalezen – nainstalujte Antigravity CLI a přihlaste se (agy)" >&2; exit 2; }
 command -v python3 >/dev/null 2>&1 || { echo "CHYBA: chybí python3" >&2; exit 2; }
 
-# Nastavení z pluginu (TEAM_GEMINI_MODEL, TEAM_GEMINI_EFFORT) – prázdné = výchozí hodnoty agy
+# Nastavení: plugin v Claude → .team/config → ~/.config/claude-team/config; prázdné = výchozí hodnoty agy
+source "$(dirname "$0")/team-config.sh"
+team_nastav TEAM_GEMINI_MODEL gemini_model
+team_nastav TEAM_GEMINI_EFFORT gemini_effort
 model_arg=(); [[ -n "${TEAM_GEMINI_MODEL:-}" ]] && model_arg=(--model "$TEAM_GEMINI_MODEL")
 effort_arg=(); [[ -n "${TEAM_GEMINI_EFFORT:-}" ]] && effort_arg=(--effort "$TEAM_GEMINI_EFFORT")
 

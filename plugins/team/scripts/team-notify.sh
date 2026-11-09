@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-# Pošle notifikaci na mobil (ntfy nebo Telegram) podle nastavení pluginu.
+# Pošle notifikaci na mobil (ntfy nebo Telegram) podle nastavení pluginu
+# nebo souboru ~/.config/claude-team/config (viz team-config.sh).
 # Použití: team-notify.sh "text"
 # Jako Notification hook (bez argumentu, JSON na stdin) posílá jen během běhu /team.
 # Vždy končí kódem 0 – notifikace nesmí zastavit práci.
 
-TEAM_NTFY_TOPIC="${TEAM_NTFY_TOPIC:-${CLAUDE_PLUGIN_OPTION_NTFY_TOPIC:-}}"
-TEAM_NTFY_SERVER="${TEAM_NTFY_SERVER:-${CLAUDE_PLUGIN_OPTION_NTFY_SERVER:-}}"
-TEAM_TELEGRAM_TOKEN="${TEAM_TELEGRAM_TOKEN:-${CLAUDE_PLUGIN_OPTION_TELEGRAM_BOT_TOKEN:-}}"
-TEAM_TELEGRAM_CHAT_ID="${TEAM_TELEGRAM_CHAT_ID:-${CLAUDE_PLUGIN_OPTION_TELEGRAM_CHAT_ID:-}}"
+source "$(dirname "$0")/team-config.sh"
+team_nastav TEAM_NTFY_TOPIC ntfy_topic CLAUDE_PLUGIN_OPTION_NTFY_TOPIC
+team_nastav TEAM_NTFY_SERVER ntfy_server CLAUDE_PLUGIN_OPTION_NTFY_SERVER
+team_nastav TEAM_TELEGRAM_TOKEN telegram_bot_token CLAUDE_PLUGIN_OPTION_TELEGRAM_BOT_TOKEN
+team_nastav TEAM_TELEGRAM_CHAT_ID telegram_chat_id CLAUDE_PLUGIN_OPTION_TELEGRAM_CHAT_ID
 [[ -z "${TEAM_NTFY_TOPIC:-}" && -z "${TEAM_TELEGRAM_TOKEN:-}" ]] && exit 0
 
 root="$(git rev-parse --show-toplevel 2>/dev/null)"

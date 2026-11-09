@@ -7,9 +7,19 @@ Univerzální tým agentů pro libovolný projekt. Technologie zjistí sám z `C
 ```
 /plugin marketplace add Nibbler46/claude-team
 /plugin install team@claude-team
-/plugin configure team@claude-team
 ```
-V nastavení vyplňte model Gemini (slug z příkazu `agy models`) a volitelně notifikace. Pak restartujte Claude Code nebo zadejte `/reload-plugins`.
+Pak restartujte Claude Code nebo zadejte `/reload-plugins`.
+
+### Nastavení (model Gemini, notifikace)
+Nejjednodušší je soubor `~/.config/claude-team/config` (pro všechny projekty) nebo `.team/config` v projektu (má přednost):
+```
+gemini_model=gemini-4-argon-medium
+gemini_effort=high
+ntfy_topic=
+telegram_bot_token=
+telegram_chat_id=
+```
+Model vyberete z výpisu `agy models`. Bez nastavení použije `agy` svůj výchozí model. Pokud vaše verze Claude Code umí nastavení pluginu (`/plugin configure team@claude-team`), má přednost před souborem.
 
 Aktualizace: `/plugin marketplace update claude-team`.
 
