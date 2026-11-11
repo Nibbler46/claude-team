@@ -27,13 +27,14 @@ U soukromého repozitáře musí mít počítač přístup ke GitHubu přes git 
 **Předpoklady:** `git`, `python3`, `curl`; pro kritiku Gemini nainstalované a jednou interaktivně přihlášené `agy`.
 
 ## Použití
-Vše se ovládá čtyřmi příkazy v kořeni projektu:
+Vše se ovládá příkazy v kořeni projektu:
 
 | Příkaz | Co udělá |
 |---|---|
 | `/team:start <úkol>` | celý proces od návrhu po review (průběh níže) |
-| `/team:plan <úkol>` | jen návrh + kritika + arbitráž, nic se neprogramuje |
-| `/team:start <složka návrhu>` | naváže implementací na hotový `/team:plan` |
+| `/team:plan <úkol>` | jen návrh + kritika + arbitráž (výběr kritiků, až 2 kola), nic se neprogramuje |
+| `/team:plan-fast <úkol>` | rychlý návrh bez dotazů: architekt (Opus) → Gemini → arbitr (Opus), jedno kolo |
+| `/team:start <složka návrhu>` | naváže implementací na hotový `/team:plan` nebo `/team:plan-fast` |
 | `/team:review [větev/commit]` | review aktuálních změn: kontroly, Gemini, safety, arbitr; volitelně opraví |
 | `/team:safety [větev/commit]` | jen bezpečnostní kontrola aktuálních změn; volitelně opraví |
 
